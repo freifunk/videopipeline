@@ -1,0 +1,32 @@
+format_version: 10
+pipelines:
+  processing-pipeline:
+    group: sample-pipeline
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    materials:
+      git-e258c09:
+        git: https://github.com/0xVijayReddy/test
+        shallow_clone: false
+        auto_update: true
+        branch: master
+    stages:
+    - processing:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+          allow_only_on_success: false
+        jobs:
+          encode-h264:
+            timeout: 0
+            tasks:
+            - exec:
+                command: ls
+                run_if: passed
+    parameters:
+      scripts_path: /Users/vijayreddy/Documents/projects/gsoc/videopipeline/scripts
+      video_data_path: /Users/vijayreddy/Downloads/video-data
+      video_code: cd3456dd-e277-4947-95db-3b7c64d4216f
