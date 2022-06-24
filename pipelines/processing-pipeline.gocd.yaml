@@ -6,7 +6,7 @@ pipelines:
     lock_behavior: none
     display_order: -1
     materials:
-      git-e258c09:
+      git-0f474f9:
         git: https://github.com/0xVijayReddy/test
         shallow_clone: false
         auto_update: true
@@ -24,7 +24,10 @@ pipelines:
             timeout: 0
             tasks:
             - exec:
-                command: ls
+                arguments:
+                - /Users/vijayreddy/Documents/projects/gsoc/videopipeline/scripts/encode_h264_AAC_HQ.sh
+                - /Users/vijayreddy/Downloads/video-data/cd3456dd-e277-4947-95db-3b7c64d4216f/cd3456dd-e277-4947-95db-3b7c64d4216f.mp4
+                command: bash
                 run_if: passed
     parameters:
       scripts_path: /Users/vijayreddy/Documents/projects/gsoc/videopipeline/scripts
