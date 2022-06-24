@@ -79,7 +79,7 @@ Setup the password file which will be used by the Password File Authentication p
 Use the below command for creating password file and a adding user 
 
 ```
-sudo htpasswd -c /etc/go/password.properties vijay
+sudo htpasswd -B -c /etc/go/password.properties vijay
 ```
 <img width="847" alt="Screenshot 2022-06-24 at 10 10 17 PM" src="https://user-images.githubusercontent.com/44572780/175604753-bd090536-2cee-497b-94f3-4a3b2ec4cd0f.png">
 
