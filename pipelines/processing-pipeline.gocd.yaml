@@ -59,6 +59,6 @@ pipelines:
                 command: rm
                 run_if: passed
     parameters:
-      scripts_path: /Users/vijayreddy/Documents/projects/gsoc/videopipeline/scripts
-      video_data_path: /Users/vijayreddy/Downloads/video-data
+      scripts_path: /home/vijay/videopipeline/scripts
+      video_data_path: /home/vijay/video_data
       video_code: cd3456dd-e277-4947-95db-3b7c64d4216f
