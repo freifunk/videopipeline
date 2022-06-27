@@ -25,9 +25,38 @@ pipelines:
             tasks:
             - exec:
                 arguments:
-                - /Users/vijayreddy/Documents/projects/gsoc/videopipeline/scripts/encode_h264_AAC_HQ.sh
-                - /Users/vijayreddy/Downloads/video-data/cd3456dd-e277-4947-95db-3b7c64d4216f/cd3456dd-e277-4947-95db-3b7c64d4216f.mp4
+                - '#{video_data_path}/#{video_code}/#{video_code}.mp4'
+                - .
+                command: cp
+                run_if: passed
+            - exec:
+                arguments:
+                - '#{scripts_path}/encode_h264_AAC_HQ.sh'
+                - '#{video_code}.mp4'
                 command: bash
+                run_if: passed
+            - exec:
+                arguments:
+                - '#{scripts_path}/fix-metadata.sh'
+                - out.mp4
+                command: bash
+                run_if: passed
+            - exec:
+                arguments:
+                - meta-fix.mp4
+                - '#{video_data_path}/#{video_code}/processed_videos/#{video_code}.mp4'
+                command: cp
+                run_if: passed
+            - exec:
+                command: ls
+                run_if: passed
+            - exec:
+                arguments:
+                - README.md
+                - out.mp4
+                - '#{video_code}.mp4'
+                - meta-fix.mp4
+                command: rm
                 run_if: passed
     parameters:
       scripts_path: /Users/vijayreddy/Documents/projects/gsoc/videopipeline/scripts
