@@ -1,0 +1,48 @@
+---
+- name: install apache
+  ansible.builtin.apt:
+    name: apache2
+    state: present
+    update_cache: yes
+- name: certificates
+  include_role:
+      name: geerlingguy.certbot
+  vars:
+      certbot_create_if_missing: true
+      certbot_auto_renew_user: root
+      certbot_create_method: standalone
+      certbot_install_method: package
+      certbot_create_standalone_stop_services:
+        - apache2
+      certbot_certs:
+        - email: "{{ email }}"
+          domains: 
+            - "{{ item }}"
+  loop: "{{ domains }}"
+- name: vhosts
+  include_role:
+      name: geerlingguy.apache
+  vars:
+    apache_remove_default_vhost: true
+    apache_ssl_cipher_suite: HIGH:!aNULL:!MD5
+    apache_ssl_protocol: -all +TLSv1.3 +TLSv1.2
+    apache_mods_enabled:
+      - rewrite
+      - ssl
+      - proxy
+      - proxy_http
+    apache_vhosts:
+      - servername: "{{ item }}"
+        redirect_to_https: true
+        extra_parameters: |
+          RewriteEngine On
+          RewriteCond %{HTTPS} !=On
+          RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI}%{QUERY_STRING} [R=301,L]
+    apache_vhosts_ssl:
+      - servername:  "{{ item }}"
+        certificate_file: /etc/letsencrypt/live/{{ item }}/fullchain.pem
+        certificate_key_file: /etc/letsencrypt/live/{{ item }}/privkey.pem
+        extra_parameters: |
+          ProxyPass / http://127.0.0.1:8153/
+          ProxyPassReverse / http://127.0.0.1:8153/
+  loop: "{{ domains }}"

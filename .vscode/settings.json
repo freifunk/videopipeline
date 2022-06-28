@@ -1,0 +1,5 @@
+{
+    "yaml.schemas": {
+        "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible.json#/$defs/tasks": "file:///home/abraeu/Dokumente/sources/videopipeline/ansible/roles/install_apache2_with_reverse_proxy/tasks/main.yaml"
+    }
+}
