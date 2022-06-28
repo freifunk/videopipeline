@@ -31,6 +31,7 @@
       - ssl
       - proxy
       - proxy_http
+      - headers
     apache_vhosts:
       - servername: "{{ item }}"
         redirect_to_https: true
@@ -45,4 +46,5 @@
         extra_parameters: |
           ProxyPass / http://127.0.0.1:8153/
           ProxyPassReverse / http://127.0.0.1:8153/
+          Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains"
   loop: "{{ domains }}"
