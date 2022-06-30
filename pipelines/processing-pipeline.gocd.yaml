@@ -1,64 +1,54 @@
 format_version: 10
 pipelines:
-  processing-pipeline:
+  test-processing-pipeline:
     group: videoodyssee
     label_template: ${COUNT}
     lock_behavior: none
     display_order: -1
     materials:
-      git-0f474f9:
-        git: https://github.com/0xVijayReddy/test
+      git-58b26e2:
+        git: https://github.com/0xVijayReddy/test.git
         shallow_clone: false
         auto_update: true
         branch: master
     stages:
     - processing:
-        fetch_materials: true
+        fetch_materials: false
         keep_artifacts: false
-        clean_workspace: false
+        clean_workspace: true
         approval:
           type: success
           allow_only_on_success: false
+        environment_variables:
+          video_url: http://techslides.com/demos/sample-videos/small.mp4
+          video_id: dd3456dd-e277-4947-95db-3b7c64d4216f
+          title: Test
         jobs:
           encode-h264:
             timeout: 0
+            artifacts:
+            - build:
+                source: '*h264.mp4'
+                destination: ''
             tasks:
             - exec:
                 arguments:
-                - '#{video_data_path}/#{video_code}/#{video_code}.mp4'
-                - .
-                command: cp
-                run_if: passed
-            - exec:
-                arguments:
-                - '#{scripts_path}/encode_h264_AAC_HQ.sh'
-                - '#{video_code}.mp4'
+                - download_video.sh
                 command: bash
                 run_if: passed
             - exec:
                 arguments:
-                - '#{scripts_path}/fix-metadata.sh'
-                - out.mp4
+                - encode_h264_AAC_HQ.sh
                 command: bash
                 run_if: passed
             - exec:
                 arguments:
-                - meta-fix.mp4
-                - '#{video_data_path}/#{video_code}/processed_videos/#{video_code}.mp4'
-                command: cp
+                - fix-metadata.sh
+                command: bash
+                run_if: passed
+            - exec:
+                command: pwd
                 run_if: passed
             - exec:
                 command: ls
                 run_if: passed
-            - exec:
-                arguments:
-                - README.md
-                - out.mp4
-                - '#{video_code}.mp4'
-                - meta-fix.mp4
-                command: rm
-                run_if: passed
-    parameters:
-      scripts_path: /home/vijay/videopipeline/scripts
-      video_data_path: /home/vijay/video_data
-      video_code: cd3456dd-e277-4947-95db-3b7c64d4216f
