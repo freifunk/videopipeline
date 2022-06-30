@@ -1,6 +1,6 @@
 format_version: 10
 pipelines:
-  test-processing-pipeline:
+  processing-pipeline:
     group: videoodyssee
     label_template: ${COUNT}
     lock_behavior: none
