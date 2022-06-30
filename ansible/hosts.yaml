@@ -1,0 +1,9 @@
+all:
+  children:
+    gocd-server:
+      hosts:
+        videopipeline.freifunk.net:
+          domains:
+            - videopipeline.freifunk.net
+          email: web+videopipeline@freifunk.net
+

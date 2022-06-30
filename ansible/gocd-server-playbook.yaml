@@ -1,0 +1,7 @@
+---
+- name: Install GoCD Server
+  hosts: gocd-server
+  become: yes
+  become_method: sudo
+  roles:
+    - install_apache2_with_reverse_proxy
