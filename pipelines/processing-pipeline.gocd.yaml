@@ -20,7 +20,6 @@ pipelines:
           type: success
           allow_only_on_success: false
         environment_variables:
-          PATH: $PATH:/home/vijay/videopipeline/scripts
           video_url: http://techslides.com/demos/sample-videos/small.mp4
           video_id: dd3456dd-e277-4947-95db-3b7c64d4216f
           title: Test
