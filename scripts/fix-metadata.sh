@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FORMAT = $1
+FORMAT=$1
 
 ffmpeg -i "$video_id-processed.mp4"   \
   -map_metadata 0 \
