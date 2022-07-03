@@ -28,7 +28,7 @@ pipelines:
             timeout: 0
             artifacts:
             - build:
-                source: '*.mp4'
+                source: '*fixed.mp4'
                 destination: ''
             tasks:
             - exec:
@@ -57,7 +57,7 @@ pipelines:
             timeout: 0
             artifacts:
             - build:
-                source: '*.webm'
+                source: '*fixed.webm'
                 destination: ''
             tasks:
             - exec:
