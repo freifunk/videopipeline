@@ -28,7 +28,7 @@ pipelines:
             timeout: 0
             artifacts:
             - build:
-                source: '*h264.mp4'
+                source: '*.mp4'
                 destination: ''
             tasks:
             - exec:
@@ -44,7 +44,7 @@ pipelines:
             - exec:
                 arguments:
                 - /opt/fix-metadata.sh
-                - h264
+                - mp4
                 command: bash
                 run_if: passed
             - exec:
@@ -57,7 +57,7 @@ pipelines:
             timeout: 0
             artifacts:
             - build:
-                source: '*webm.webm'
+                source: '*.webm'
                 destination: ''
             tasks:
             - exec:
