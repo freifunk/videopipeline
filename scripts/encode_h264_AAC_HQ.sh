@@ -13,4 +13,4 @@ ffmpeg -v warning -i "$video_id.mp4" -vf yadif \
   -b:a 128k -metadata title="$title" \
     -metadata album="<album>" \
     -metadata copyright="Licensed to the public under http://creativecommons.org/licenses/by-sa/3.0/" \
-    -f mp4 -movflags faststart -v 24 -y "$video_id-processed.mp4"  
+    -f mp4 -movflags faststart -v 24 -y "$video_id-processed.mp4" 

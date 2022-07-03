@@ -33,17 +33,18 @@ pipelines:
             tasks:
             - exec:
                 arguments:
-                - download_video.sh
+                - /opt/download_video.sh
                 command: bash
                 run_if: passed
             - exec:
                 arguments:
-                - encode_h264_AAC_HQ.sh
+                - /opt/encode_h264_AAC_HQ.sh
                 command: bash
                 run_if: passed
             - exec:
                 arguments:
-                - fix-metadata.sh
+                - /opt/fix-metadata.sh
+                - h264
                 command: bash
                 run_if: passed
             - exec:
@@ -52,3 +53,32 @@ pipelines:
             - exec:
                 command: ls
                 run_if: passed
+          encode-webm:
+            timeout: 0
+            artifacts:
+            - build:
+                source: '*webm.webm'
+                destination: ''
+            tasks:
+            - exec:
+                arguments:
+                - /opt/download_video.sh
+                command: bash
+                run_if: passed
+            - exec:
+                arguments:
+                - /opt/encode_webm.sh
+                command: bash
+                run_if: passed
+            - exec:
+                arguments:
+                - /opt/fix-metadata.sh
+                - webm
+                command: bash
+                run_if: passed
+            - exec:
+                command: pwd
+                run_if: passed
+            - exec:
+                command: ls
+                run_if: passed      
