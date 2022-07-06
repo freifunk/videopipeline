@@ -96,3 +96,45 @@ Now head over to [http://localhost:8153](http://localhost:8153) to setup the aut
 <img width="1051" alt="Screenshot 2022-06-24 at 10 32 23 PM" src="https://user-images.githubusercontent.com/44572780/175608576-f705679f-5c6c-4a23-a8be-b64fa40de85a.png">
 
 
+## Using GoCD API
+
+Check the status of the video processing pipeline using below api request
+```
+curl 'http://localhost:8153/go/api/pipelines/processing-pipeline/status' \
+       -H 'Authorization: bearer 3f1ebd831716b8623caec64234ef7bc2c3a3483c' \
+       -H 'Accept: application/vnd.go.cd.v1+json'
+
+```
+
+Trigger the video processing pipeline using below API request
+
+```
+curl 'http://localhost:8153/go/api/pipelines/processing-pipeline/schedule' \
+       -H 'Authorization: bearer 3f1ebd831716b8623caec64234ef7bc2c3a3483c' \
+       -H 'Accept: application/vnd.go.cd.v1+json' \
+       -H 'Content-Type: application/json' \
+       -X POST \
+       -d '{
+             "environment_variables": [
+               {
+                 "name": "VIDEO_URL",
+                 "value": "http://techslides.com/demos/sample-videos/small.mp4"
+               },
+               {
+                 "name": "VIDEO_ID",
+                 "value":"dd3456dd-e277-4947-95db-3b7c64d4216f"
+
+               },
+               {
+                 "name": "TITLE",
+                 "value":"Test"
+    
+               }
+             ]
+           }'
+
+
+```
+
+
+
