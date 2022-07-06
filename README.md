@@ -60,8 +60,22 @@ And execute the below command to install the go-agent
 ```
 sudo apt install go-agent
 ```
+
+## Changing server configuration
+After the installtion of the server before starting the server we need to change the server configuration
+Run the below command to change the configuration file
+```
+sudo nano /usr/share/go-server/wrapper-config/wrapper-properties.conf 
+```
+ By default, the server listens on 0.0.0.0, which is the wildcard or “unspecified” address. Usually, this means that the GoCD Server can be accessed through any network interface. In some, more advanced networking setups, it might be needed to override this, typically to 127.0.0.1, so that only clients local to the box can access it.
+ 
+To configure the go-server to only listen on localhost add this line to the config file
+```
+wrapper.java.additional.100=-Dcruise.listen.host=127.0.0.1
+```
+
 ## Starting the go-server and go-agent
-After the installation of go-server and go-agent ,
+After the installation and configuration of go-server and go-agent ,
 
 Start running go-server using below command:
 ```
