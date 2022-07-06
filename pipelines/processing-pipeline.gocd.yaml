@@ -1,17 +1,46 @@
 format_version: 10
 pipelines:
-  processing-pipeline:
-    group: videoodyssee
+  test-processing-pipeline:
+    group: sample-pipeline
     label_template: ${COUNT}
     lock_behavior: none
     display_order: -1
+    environment_variables:
+      VIDEO_URL: http://techslides.com/demos/sample-videos/small.mp4
+      VIDEO_ID: dd3456dd-e277-4947-95db-3b7c64d4216f
+      TITLE: Test
     materials:
-      git-58b26e2:
+      git-cd3e9d4:
         git: https://github.com/0xVijayReddy/test.git
         shallow_clone: false
         auto_update: true
         branch: master
     stages:
+    - download:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+          allow_only_on_success: false
+        jobs:
+          fix-metadata:
+            timeout: 0
+            artifacts:
+            - build:
+                source: video.mp4
+                destination: ''
+            tasks:
+            - exec:
+                arguments:
+                - /opt/download_video.sh
+                command: bash
+                run_if: passed
+            - exec:
+                arguments:
+                - /opt/fix-metadata.sh
+                command: bash
+                run_if: passed
     - processing:
         fetch_materials: false
         keep_artifacts: false
@@ -19,66 +48,42 @@ pipelines:
         approval:
           type: success
           allow_only_on_success: false
-        environment_variables:
-          video_url: http://techslides.com/demos/sample-videos/small.mp4
-          video_id: dd3456dd-e277-4947-95db-3b7c64d4216f
-          title: Test
         jobs:
           encode-h264:
             timeout: 0
             artifacts:
             - build:
-                source: '*fixed.mp4'
+                source: '*h264.mp4'
                 destination: ''
             tasks:
+            - fetch:
+                run_if: any
+                stage: download
+                job: fix-metadata
+                is_file: yes
+                source: video.mp4
+
             - exec:
                 arguments:
-                - /opt/download_video.sh
+                - encode_h264_AAC_HQ.sh
                 command: bash
-                run_if: passed
-            - exec:
-                arguments:
-                - /opt/encode_h264_AAC_HQ.sh
-                command: bash
-                run_if: passed
-            - exec:
-                arguments:
-                - /opt/fix-metadata.sh
-                - mp4
-                command: bash
-                run_if: passed
-            - exec:
-                command: pwd
-                run_if: passed
-            - exec:
-                command: ls
                 run_if: passed
           encode-webm:
             timeout: 0
             artifacts:
             - build:
-                source: '*fixed.webm'
+                source: '*webm.webm'
                 destination: ''
             tasks:
-            - exec:
-                arguments:
-                - /opt/download_video.sh
-                command: bash
-                run_if: passed
+            - fetch:
+                run_if: any
+                stage: download
+                job: fix-metadata
+                is_file: yes
+                source: video.mp4
+                
             - exec:
                 arguments:
                 - /opt/encode_webm.sh
                 command: bash
                 run_if: passed
-            - exec:
-                arguments:
-                - /opt/fix-metadata.sh
-                - webm
-                command: bash
-                run_if: passed
-            - exec:
-                command: pwd
-                run_if: passed
-            - exec:
-                command: ls
-                run_if: passed      

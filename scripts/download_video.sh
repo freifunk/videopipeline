@@ -1,2 +1,2 @@
 #!/bin/bash 
-curl $video_url --output "$video_id.mp4"
+curl $VIDEO_URL --output "video.mp4"
