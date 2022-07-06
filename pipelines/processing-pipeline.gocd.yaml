@@ -65,7 +65,7 @@ pipelines:
 
             - exec:
                 arguments:
-                - encode_h264_AAC_HQ.sh
+                - /opt/encode_h264_AAC_HQ.sh
                 command: bash
                 run_if: passed
           encode-webm:
