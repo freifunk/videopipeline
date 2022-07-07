@@ -116,7 +116,7 @@ Now head over to [http://localhost:8153](http://localhost:8153) to setup the aut
 Check the status of the video processing pipeline using below api request
 ```
 curl 'http://localhost:8153/go/api/pipelines/processing-pipeline/status' \
-       -H 'Authorization: bearer 3f1ebd831716b8623caec64234ef7bc2c3a3483c' \
+       -H 'Authorization: bearer <ACCESS_TOKEN>' \
        -H 'Accept: application/vnd.go.cd.v1+json'
 
 ```
@@ -125,7 +125,7 @@ Trigger the video processing pipeline using below API request
 
 ```
 curl 'http://localhost:8153/go/api/pipelines/processing-pipeline/schedule' \
-       -H 'Authorization: bearer 3f1ebd831716b8623caec64234ef7bc2c3a3483c' \
+       -H 'Authorization: bearer <ACCESS_TOKEN>' \
        -H 'Accept: application/vnd.go.cd.v1+json' \
        -H 'Content-Type: application/json' \
        -X POST \
