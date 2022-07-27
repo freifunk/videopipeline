@@ -6,4 +6,10 @@ all:
           domains:
             - videopipeline.freifunk.net
           email: web+videopipeline@freifunk.net
-
+    gocd-agent:
+      hosts:
+        13.233.97.114:
+        3.109.132.159:
+      vars:
+        ansible_user: admin   
+ 

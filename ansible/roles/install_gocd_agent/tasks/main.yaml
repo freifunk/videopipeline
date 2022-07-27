@@ -1,0 +1,35 @@
+---
+- name: install gnupg
+  apt:
+    name: gnupg
+    state: present
+    update_cache: yes
+
+- name: add GoCD apt-key
+  apt_key: 
+    url: https://download.gocd.org/GOCD-GPG-KEY.asc
+    state: present 
+
+- name: add GoCD apt repository
+  apt_repository: 
+    repo: 'deb https://download.gocd.org /' 
+    state: present 
+    update_cache: yes
+
+
+- name: install GoCD Agent
+  apt: 
+    name: go-agent
+    state: latest
+    update_cache: yes
+
+- name: configuring the GoCD agent
+  lineinfile:
+    path: /usr/share/go-agent/wrapper-config/wrapper-properties.conf
+    regexp: '^wrapper.app.parameter.101'
+    line: wrapper.app.parameter.101=https://videopipeline.freifunk.net/go/
+
+- name: start gocd-agent service
+  service:
+    name: go-agent
+    state: restarted

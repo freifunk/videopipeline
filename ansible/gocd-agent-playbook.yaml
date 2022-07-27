@@ -1,0 +1,8 @@
+---
+- name: Install GoCD Agent
+  hosts: gocd-agent
+  become: yes
+  become_method: sudo
+  roles:
+    - install_gocd_agent
+    
