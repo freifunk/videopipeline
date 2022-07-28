@@ -6,10 +6,23 @@ all:
           domains:
             - videopipeline.freifunk.net
           email: web+videopipeline@freifunk.net
+      #   65.0.183.251:
+      #     domains:
+      #       - ec2-65-0-183-251.ap-south-1.compute.amazonaws.com
+      #     email: web+ec2-65-0-183-251.ap-south-1.compute.amazonaws.com
+
+      #   13.127.113.51:
+      #     domains:
+      #       - ec2-13-127-113-51.ap-south-1.compute.amazonaws.com
+      #     email: web+ec2-13-127-113-51.ap-south-1.compute.amazonaws.com
+      # vars:
+      #   ansible_user: admin  
+      #   ansible_ssh_private_key_file: ~/.ssh/login.pem  
     gocd-agent:
       hosts:
-        13.233.97.114:
-        3.109.132.159:
+        13.127.28.22:
+        43.205.117.34:
       vars:
-        ansible_user: admin   
+        ansible_user: admin  
+        ansible_ssh_private_key_file: ~/.ssh/login.pem
  

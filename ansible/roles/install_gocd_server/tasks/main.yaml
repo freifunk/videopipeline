@@ -1,0 +1,37 @@
+---
+- name: install required tools
+  apt:
+    name: 
+    - gnupg
+    - git
+    state: latest
+    update_cache: yes
+
+- name: add GoCD  apt-key
+  apt_key: 
+    url: https://download.gocd.org/GOCD-GPG-KEY.asc
+    state: present 
+
+
+- name: add GoCD repository to sources
+  apt_repository: 
+    repo: deb https://download.gocd.org /
+    state: present 
+    update_cache: yes  
+
+- name: install packages
+  apt: 
+    name: go-server
+    state: latest
+    update_cache: yes
+
+- name: configuring the GoCD Server(make it listen only at the localhost)
+  lineinfile:
+    path: /usr/share/go-server/wrapper-config/wrapper-properties.conf 
+    regexp: '^wrapper.java.additional.100=-Dcruise.listen.host=127.0.0.1'
+    line: wrapper.java.additional.100=-Dcruise.listen.host=127.0.0.1
+
+- name: start gocd-server service
+  service:
+    name: go-server
+    state: restarted

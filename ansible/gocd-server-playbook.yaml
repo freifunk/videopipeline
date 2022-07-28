@@ -5,3 +5,4 @@
   become_method: sudo
   roles:
     - install_apache2_with_reverse_proxy
+    - install_gocd_server

@@ -1,33 +1,50 @@
 ---
-- name: install gnupg
+- name: install required tools
   apt:
-    name: gnupg
-    state: present
-    update_cache: yes
-
-- name: add GoCD apt-key
-  apt_key: 
-    url: https://download.gocd.org/GOCD-GPG-KEY.asc
-    state: present 
-
-- name: add GoCD apt repository
-  apt_repository: 
-    repo: 'deb https://download.gocd.org /' 
-    state: present 
-    update_cache: yes
-
-
-- name: install GoCD Agent
-  apt: 
-    name: go-agent
+    name: 
+    - gnupg
+    - git
     state: latest
     update_cache: yes
+
+- name: add GoCD and c3voc apt-keys
+  apt_key: 
+    url: "{{ item }}"
+    state: present 
+  with_items:
+    - https://download.gocd.org/GOCD-GPG-KEY.asc
+    - https://pkg.c3voc.de/repo.key
+
+
+- name: add repositories to the sources
+  apt_repository: 
+    repo: "{{ item }}"
+    state: present 
+    update_cache: yes  
+  with_items:
+    - deb https://download.gocd.org /
+    - deb http://pkg.c3voc.de/ ffmpeg-bullseye main
+    - deb http://pkg.c3voc.de/ bullseye main
+
+- name: install packages
+  apt: 
+    name: 
+     - go-agent
+     - ffmpeg
+    state: latest
+    update_cache: yes
+
 
 - name: configuring the GoCD agent
   lineinfile:
     path: /usr/share/go-agent/wrapper-config/wrapper-properties.conf
     regexp: '^wrapper.app.parameter.101'
     line: wrapper.app.parameter.101=https://videopipeline.freifunk.net/go/
+
+- name: copying the processing scripts to /opt folder
+  copy:
+    src: "{{ playbook_dir }}/../scripts/"
+    dest: /opt/
 
 - name: start gocd-agent service
   service:
