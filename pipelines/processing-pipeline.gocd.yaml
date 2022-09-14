@@ -87,3 +87,22 @@ pipelines:
                 - /opt/encode_webm.sh
                 command: bash
                 run_if: passed
+          generate-thumbnail:
+            timeout: 0
+            artifacts:
+            - build:
+                source: '*.webm'
+                destination: ''
+            tasks:
+            - fetch:
+                run_if: any
+                stage: download
+                job: fix-metadata
+                is_file: yes
+                source: video.mp4
+                
+            - exec:
+                arguments:
+                - /opt/create_poster_thumbnails.sh . video.mp4
+                command: bash
+                run_if: passed
