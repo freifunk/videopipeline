@@ -100,7 +100,7 @@ pipelines:
                 job: fix-metadata
                 is_file: yes
                 source: video.mp4
-             - exec:
+            - exec:
                 command: ls
                 run_if: passed   
                 
