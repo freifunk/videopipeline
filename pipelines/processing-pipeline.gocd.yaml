@@ -106,6 +106,8 @@ pipelines:
                 
             - exec:
                 arguments:
-                - /opt/create_poster_thumbnails.sh . video.mp4
+                - /opt/create_poster_thumbnails.sh 
+                - . 
+                - video.mp4
                 command: bash
                 run_if: passed
