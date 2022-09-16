@@ -4,6 +4,8 @@
     name: 
     - gnupg
     - git
+    - python3
+    - python3-pip
     state: latest
     update_cache: yes
 
@@ -33,6 +35,14 @@
      - ffmpeg
     state: latest
     update_cache: yes
+- name: Install required python3 modules
+  pip:
+    name:
+      - pillow
+    executable: pip3
+  become: yes
+  become_user: go
+    
 
 
 - name: configuring the GoCD agent
