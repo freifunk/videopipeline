@@ -91,7 +91,7 @@ pipelines:
             timeout: 0
             artifacts:
             - build:
-                source: '*.webm'
+                source: '*.jpg'
                 destination: ''
             tasks:
             - fetch:
