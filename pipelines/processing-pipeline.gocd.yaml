@@ -108,3 +108,9 @@ pipelines:
                 - video.mp4
                 command: bash
                 run_if: passed
+            - exec:
+                arguments:
+                - /opt/create_timelens.sh
+                - video.mp4
+                command: bash
+                run_if: passed
