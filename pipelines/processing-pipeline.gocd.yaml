@@ -132,6 +132,6 @@ pipelines:
                 run_if: passed
             - exec:
                 arguments:
-                - /opt/upload_images_to_cdn.sh
+                - /opt/upload_files_to_cdn.sh
                 command: bash
                 run_if: passed    
