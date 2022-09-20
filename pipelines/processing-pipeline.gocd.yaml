@@ -6,7 +6,7 @@ pipelines:
     lock_behavior: none
     display_order: -1
     environment_variables:
-      CDN_ADDRESS: 52.66.255.140
+      CDN_ADDRESS: 52.66.255.140 
       CDN_SERVER_USERNAME: admin
       CDN_FILES_FOLDER: /srv/files
       CONFERENCE: freifunk
@@ -75,6 +75,7 @@ pipelines:
             - exec:
                 arguments:
                 - /opt/upload_video_to_cdn.sh
+                - h264
                 command: bash
                 run_if: passed    
           encode-webm:
@@ -96,6 +97,12 @@ pipelines:
                 - /opt/encode_webm.sh
                 command: bash
                 run_if: passed
+            - exec:
+                arguments:
+                - /opt/upload_video_to_cdn.sh
+                - webm
+                command: bash
+                run_if: passed    
           generate-thumbnail:
             timeout: 0
             artifacts:
@@ -123,3 +130,8 @@ pipelines:
                 - video.mp4
                 command: bash
                 run_if: passed
+            - exec:
+                arguments:
+                - /opt/upload_images_to_cdn.sh
+                command: bash
+                run_if: passed    
