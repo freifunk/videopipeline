@@ -15,6 +15,6 @@ ffmpeg -y -analyzeduration  40000000  -probesize  100000000  -i "video.mp4" \
   -c:v  libvpx -threads 16  -pass 2  -passlogfile  "$PASSLOG" \
   -g  120  -b:v  1200k  -qmin  11  -qmax  51  -minrate  100k  -maxrate  5000k \
   -c:a  libvorbis  -b:a  96k  -ac:a 2  -ar:a 48000  \
-  -f  webm -v 24 -y "$VIDEO_ID-webm.webm"
+  -f  webm -v 24 -y "${VIDEO_ID}-webm.webm"
 
 rm "${PASSLOG}"*

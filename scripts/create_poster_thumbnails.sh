@@ -8,12 +8,7 @@ INTERVAL=180
 
 inputdir="$1"
 originalfile="$2"
-# target output directory, optional
-outdir="$3"
-# thumbnail output filename, relative to outdir, optional
-thumb_filename="$4"
-# poster image output filename, relative to outdir, optional
-poster_filename="$5"
+
 
 file=${inputdir}/$(basename "${originalfile%.*}").mp4
 
@@ -21,16 +16,9 @@ LENGTH=$(ffprobe -loglevel quiet -print_format default -show_format "$file" | gr
 
 TMPDIR=$(mktemp -d /tmp/thumb.XXXXXX)
 
-if [ -n "$thumb_filename" ] || [ -n "$poster_filename" ]; then
-  outjpg=${outdir}/${thumb_filename}
-  outjpg_preview=${outdir}/${poster_filename}
-elif [ -z "$outdir" ]; then
-  outjpg=${file%.*}_thumb.jpg
-  outjpg_preview=${file%.*}_preview.jpg
-else
-  outjpg=${outdir}/$(basename "${file%.*}_thumb.jpg")
-  outjpg_preview=${outdir}/$(basename "${file%.*}_preview.jpg")
-fi
+outjpg="${VIDEO_ID}_thumb.jpg"
+outjpg_preview="${VIDEO_ID}_preview.jpg"
+
 
 # Make sure potential subdirs in the image directory also exist
 mkdir -p `dirname "$outjpg"`
