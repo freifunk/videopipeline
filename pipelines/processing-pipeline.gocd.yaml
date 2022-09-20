@@ -10,7 +10,7 @@ pipelines:
       CDN_SERVER_USERNAME: admin
       CDN_FILES_FOLDER: /srv/files
       CONFERENCE: freifunk
-      VIDEO_URL: http://techslides.com/demos/sample-videos/small.mp4
+      VIDEO_URL: http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4
       VIDEO_ID: dd3456dd-e277-4947-95db-3b7c64d4216f
       TITLE: Test
     materials:
