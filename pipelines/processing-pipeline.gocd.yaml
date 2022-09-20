@@ -72,7 +72,7 @@ pipelines:
                 - /opt/encode_h264_AAC_HQ.sh
                 command: bash
                 run_if: passed
-             - exec:
+            - exec:
                 arguments:
                 - /opt/upload_video_to_cdn.sh
                 command: bash
