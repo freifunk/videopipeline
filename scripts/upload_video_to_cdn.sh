@@ -1,8 +1,3 @@
 #!/usr/bin/env bash
 
-VIDEO_DIR=$1
-URL=$2
-UUID=$3
-CONFERENCE=$4
-
-rsync -a ${VIDEO_DIR}/processed-video/ ${URL}/${CONFERENCE}/${UUID}
+rsync -a ${VIDEO_ID}-h264.mp4 ${CDN_SERVER_USERNAME}@${CDN_ADDRESS}:{CDN_FILES_FOLDER}/${CONFERENCE}/{VIDEO_ID}/

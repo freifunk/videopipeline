@@ -6,6 +6,10 @@ pipelines:
     lock_behavior: none
     display_order: -1
     environment_variables:
+      CDN_ADDRESS: 52.66.255.140
+      CDN_SERVER_USERNAME: admin
+      CDN_FILES_FOLDER: /srv/files
+      CONFERENCE: freifunk
       VIDEO_URL: http://techslides.com/demos/sample-videos/small.mp4
       VIDEO_ID: dd3456dd-e277-4947-95db-3b7c64d4216f
       TITLE: Test
@@ -68,6 +72,11 @@ pipelines:
                 - /opt/encode_h264_AAC_HQ.sh
                 command: bash
                 run_if: passed
+             - exec:
+                arguments:
+                - /opt/upload_video_to_cdn.sh
+                command: bash
+                run_if: passed    
           encode-webm:
             timeout: 0
             artifacts:
