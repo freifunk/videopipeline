@@ -166,13 +166,13 @@ pipelines:
                 stage: processing
                 job: encode-h264
                 is_file: yes
-                source: 'video.mp4'
+                source: 'video-h264.mp4'
             - fetch:
                 run_if: any
                 stage: processing
                 job: encode-webm
                 is_file: yes
-                source: 'video.webm'
+                source: 'video-webm.webm'
 
             - exec:
                 arguments:
