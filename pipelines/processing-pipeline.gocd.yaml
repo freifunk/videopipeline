@@ -93,7 +93,7 @@ pipelines:
                 run_if: passed    
             - exec:
                 arguments:
-                - *h264.mp4
+                - '*h264.mp4'
                 - video.mp4
                 command: mv
                 run_if: passed    
@@ -125,7 +125,7 @@ pipelines:
                 run_if: passed   
             - exec:
                 arguments:
-                - *webm.webm
+                - '*webm.webm'
                 - video.webm
                 command: mv
                 run_if: passed                    
