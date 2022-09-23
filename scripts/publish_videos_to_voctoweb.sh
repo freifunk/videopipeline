@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-VIDEO_LENGTH=$(ffprobe -loglevel quiet -print_format default -show_format video.mp4 | grep duration= | sed -e 's/duration=\([[:digit:]]*\).*/\1/g')
-VIDEO_WIDTH=$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=noprint_wrappers=1:nokey=1 video.mp4)
-VIDEO_HEIGHT=$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=noprint_wrappers=1:nokey=1 video.mp4)
-MP4_SIZE=$(( $( stat -c '%s' ${VIDEO_ID}-h264.mp4) / 1024 / 1024 )) 
-WEBM_SIZE=$(( $( stat -c '%s' ${VIDEO_ID}-webm.webm) / 1024 / 1024 )) 
+VIDEO_LENGTH=$(ffprobe -loglevel quiet -print_format default -show_format video-h264.mp4 | grep duration= | sed -e 's/duration=\([[:digit:]]*\).*/\1/g')
+VIDEO_WIDTH=$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=noprint_wrappers=1:nokey=1 video-h264.mp4)
+VIDEO_HEIGHT=$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=noprint_wrappers=1:nokey=1 video-h264.mp4)
+MP4_SIZE=$(( $( stat -c '%s' video-h264.mp4) / 1024 / 1024 )) 
+WEBM_SIZE=$(( $( stat -c '%s' video-webm.webm) / 1024 / 1024 )) 
 
 curl -H "CONTENT-TYPE: application/json" -d '{
    "api_key":'${API_KEY}',
