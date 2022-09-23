@@ -91,6 +91,13 @@ pipelines:
                 - h264
                 command: bash
                 run_if: passed    
+            - exec:
+                arguments:
+                - *h264.mp4
+                - video.mp4
+                command: mv
+                run_if: passed    
+                
           encode-webm:
             timeout: 0
             artifacts:
@@ -115,7 +122,13 @@ pipelines:
                 - /opt/upload_video_to_cdn.sh
                 - webm
                 command: bash
-                run_if: passed    
+                run_if: passed   
+            - exec:
+                arguments:
+                - *webm.webm
+                - video.webm
+                command: mv
+                run_if: passed                    
           generate-thumbnail:
             timeout: 0
             artifacts:
@@ -164,13 +177,13 @@ pipelines:
                 stage: processing
                 job: encode-h264
                 is_file: yes
-                source: '*h264.mp4'
+                source: 'video.mp4'
             - fetch:
                 run_if: any
                 stage: processing
                 job: encode-webm
                 is_file: yes
-                source: '*webm.webm'
+                source: 'video.webm'
 
             - exec:
                 arguments:
