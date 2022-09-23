@@ -91,12 +91,6 @@ pipelines:
                 - h264
                 command: bash
                 run_if: passed    
-            - exec:
-                arguments:
-                - '*h264.mp4'
-                - video.mp4
-                command: mv
-                run_if: passed    
                 
           encode-webm:
             timeout: 0
@@ -123,12 +117,7 @@ pipelines:
                 - webm
                 command: bash
                 run_if: passed   
-            - exec:
-                arguments:
-                - '*webm.webm'
-                - video.webm
-                command: mv
-                run_if: passed                    
+
           generate-thumbnail:
             timeout: 0
             artifacts:
