@@ -7,7 +7,7 @@ pipelines:
     display_order: -1
     environment_variables:
       #pipeline config variables
-      VOCTOWEB_URL: http://52.66.255.140:8000
+      VOCTOWEB_URL: http://52.66.255.140:3000
       API_KEY: 6d72a1de-f38d-416c-bcaa-b9612de24d74
       CDN_ADDRESS: 52.66.255.140 
       CDN_SERVER_USERNAME: admin
