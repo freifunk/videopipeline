@@ -37,7 +37,7 @@ curl -H "CONTENT-TYPE: application/json" -d '{
       "filename":'${VIDEO_ID}-h264.mp4',
       "folder":'${ACRONYM}/${VIDEO_ID}',
       "mime_type":"video/mp4",
-      "language":'${LANGGUAGE}',
+      "language":'${LANGUAGE}',
       "size":'${MP4_SIZE}',
       "length":'${VIDEO_LENGTH}',
       "width":'${VIDEO_HEIGHT}',

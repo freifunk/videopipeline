@@ -6,13 +6,26 @@ pipelines:
     lock_behavior: none
     display_order: -1
     environment_variables:
+      #pipeline config variables
+      VOCTOWEB_URL: http://52.66.255.140:8000
+      API_KEY: 6d72a1de-f38d-416c-bcaa-b9612de24d74
       CDN_ADDRESS: 52.66.255.140 
       CDN_SERVER_USERNAME: admin
       CDN_FILES_FOLDER: /srv/files
-      CONFERENCE: freifunk
+      ACRONYM: freifunk
+      LANGUAGE: eng
+      SLUG: freifunk-2022
+      TITLE: Test title
+      SUBTITLE: Test subtitle
+      DESCRIPTION: Test Description
+      PERSONS: vijay andi
+      TAGS: test video pipeline
+      LINK: https://github.com/freifunk/videopipeline
+      DATE: 1234
+      RELEASE_DATE: 1234
       VIDEO_URL: http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4
       VIDEO_ID: dd3456dd-e277-4947-95db-3b7c64d4216f
-      TITLE: Test
+      
     materials:
       git-cd3e9d4:
         git: https://github.com/0xVijayReddy/test.git
@@ -135,3 +148,33 @@ pipelines:
                 - /opt/upload_files_to_cdn.sh
                 command: bash
                 run_if: passed    
+    - publishing:
+        fetch_materials: false
+        keep_artifacts: false
+        clean_workspace: true
+        approval:
+          type: success
+          allow_only_on_success: false
+        jobs:
+          publish-to-voctoweb:
+            timeout: 0
+            tasks:
+            - fetch:
+                run_if: any
+                stage: processing
+                job: encode-h264
+                is_file: yes
+                source: '*h264.mp4'
+             - fetch:
+                run_if: any
+                stage: processing
+                job: encode-webm
+                is_file: yes
+                source: '*webm.webm'
+
+            - exec:
+                arguments:
+                - /opt/publish_videos_to_voctoweb.sh
+                command: bash
+                run_if: passed
+          
