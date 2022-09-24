@@ -22,7 +22,7 @@ pipelines:
       TAGS: test video pipeline
       LINK: https://github.com/freifunk/videopipeline
       DATE: 1234
-      RELEASE_DATE: c
+      RELEASE_DATE: 1234
       VIDEO_URL: http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4
       VIDEO_ID: dd3456dd-e277-4947-95db-3b7c64d4216f
       
