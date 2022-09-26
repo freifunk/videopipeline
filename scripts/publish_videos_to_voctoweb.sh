@@ -11,8 +11,8 @@
 # PERSONS="vijay andi"
 # TAGS="test video pipeline"
 # LINK="https://github.com/freifunk/videopipeline"
-# DATE="1234"
-# RELEASE_DATE="1234"
+# DATE="2022-09-26"
+# RELEASE_DATE="2022-09-26"
 # VIDEO_ID="dd3456dd-e277-4947-95db-3b7c64d4216f"
 
 
@@ -28,6 +28,10 @@ curl -o /dev/null -s -H  "CONTENT-TYPE: application/json" -d '{
    "api_key":'"\"${API_KEY}\""',
     "acronym":'"\"${ACRONYM}\""',
     "event":{
+      "poster_filename":'"\"${ACRONYM}/${VIDEO_ID}/${VIDEO_ID}_preview.jpg\""',
+      "thumb_filename":'"\"${ACRONYM}/${VIDEO_ID}/${VIDEO_ID}_thumb.jpg\""',
+      "timeline_filename":'"\"${ACRONYM}/${VIDEO_ID}/${VIDEO_ID}.timeline.jpg\""',
+      "thumbnails_filename":'"\"${ACRONYM}/${VIDEO_ID}/${VIDEO_ID}.vtt\""',
       "guid":'"\"${VIDEO_ID}\""',
       "original_language":'"\"${LANGUAGE}\""',
       "slug":'"\"${SLUG}\""',
@@ -38,11 +42,7 @@ curl -o /dev/null -s -H  "CONTENT-TYPE: application/json" -d '{
       "tags":'"\"${TAGS}\""',
       "link":'"\"${LINK}\""',
       "date":'"\"${DATE}\""',
-      "release_date":'"\"${RELEASE_DATE}\""',
-      "poster_url":'"\"${ACRONYM}/${VIDEO_ID}/${VIDEO_ID}_preview.jpg\""',
-      "thumb_url":'"\"${ACRONYM}/${VIDEO_ID}/${VIDEO_ID}_thumb.jpg\""',
-      "timeline_url":'"\"${ACRONYM}/${VIDEO_ID}/${VIDEO_ID}.timeline.jpg\""',
-      "thumbnails_url":'"\"${ACRONYM}/${VIDEO_ID}/${VIDEO_ID}.vtt\""'
+      "release_date":'"\"${RELEASE_DATE}\""'
     }
   }' "${VOCTOWEB_URL}/api/events"
 
