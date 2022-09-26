@@ -23,8 +23,8 @@ pipelines:
       PERSONS: vijay andi
       TAGS: test video pipeline
       LANGUAGE: eng
-      DATE: 1234
-      RELEASE_DATE: 1234
+      DATE: "2022-09-26"
+      RELEASE_DATE: "2022-09-26"
       LINK: https://github.com/freifunk/videopipeline
       NAME: Vijay
       EMAIL: vijay@gmail.com
