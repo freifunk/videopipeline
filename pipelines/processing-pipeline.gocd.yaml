@@ -12,19 +12,25 @@ pipelines:
       CDN_ADDRESS: 52.66.255.140 
       CDN_SERVER_USERNAME: admin
       CDN_FILES_FOLDER: /srv/files
+
+      #pipeline trigger variables
+      VIDEO_URL: http://52.66.255.140/files/song.mp4
+      VIDEO_ID: dd3456dd-e277-4947-95db-3b7c64d4216f
       ACRONYM: freifunk
-      LANGUAGE: eng
       SLUG: freifunk-2022
       TITLE: Test title
       SUBTITLE: Test subtitle
-      DESCRIPTION: Test Description
       PERSONS: vijay andi
       TAGS: test video pipeline
-      LINK: https://github.com/freifunk/videopipeline
+      LANGUAGE: eng
       DATE: 1234
       RELEASE_DATE: 1234
-      VIDEO_URL: http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4
-      VIDEO_ID: dd3456dd-e277-4947-95db-3b7c64d4216f
+      LINK: https://github.com/freifunk/videopipeline
+      NAME: Vijay
+      EMAIL: vijay@gmail.com
+      DESCRIPTION: Test Description
+     
+      
       
     materials:
       git-cd3e9d4:
@@ -176,7 +182,7 @@ pipelines:
 
             - exec:
                 arguments:
-                - /opt/publish_videos_to_voctoweb.sh
+                - /opt/publish_videos_to_voctoweb.py
                 command: bash
                 run_if: passed
           
