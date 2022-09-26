@@ -183,6 +183,6 @@ pipelines:
             - exec:
                 arguments:
                 - /opt/publish_videos_to_voctoweb.py
-                command: bash
+                command: python3
                 run_if: passed
           
