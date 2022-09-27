@@ -7,6 +7,9 @@ else
     EXT="webm"
 fi
 
-rsync -a ${VIDEO_ID}-${FORMAT}.${EXT} ${CDN_SERVER_USERNAME}@${CDN_ADDRESS}:${CDN_FILES_FOLDER}/${ACRONYM}/${VIDEO_ID}/
+rsync -a --rsync-path="mkdir -p ${CDN_FILES_FOLDER}/${ACRONYM}/ && rsync" ${VIDEO_ID}-${FORMAT}.${EXT} ${CDN_SERVER_USERNAME}@${CDN_ADDRESS}:${CDN_FILES_FOLDER}/${ACRONYM}/${VIDEO_ID}/
 
 mv ${VIDEO_ID}-${FORMAT}.${EXT} video-${FORMAT}.${EXT}
+
+
+
