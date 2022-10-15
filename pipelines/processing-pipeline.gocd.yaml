@@ -7,14 +7,14 @@ pipelines:
     display_order: -1
     environment_variables:
       #pipeline config variables
-      VOCTOWEB_URL: http://52.66.255.140:3000
+      VOCTOWEB_URL: http://13.126.150.182:3000
       API_KEY: 6d72a1de-f38d-416c-bcaa-b9612de24d74
-      CDN_ADDRESS: 52.66.255.140 
+      CDN_ADDRESS: 13.126.150.182
       CDN_SERVER_USERNAME: admin
       CDN_FILES_FOLDER: /srv/files
 
       #pipeline trigger variables
-      VIDEO_URL: http://52.66.255.140/files/song.mp4
+      VIDEO_URL: http://13.126.150.182/files/song.mp4
       VIDEO_ID: dd3456dd-e277-4947-95db-3b7c64d4216f
       ACRONYM: freifunk
       SLUG: freifunk-2022
@@ -34,7 +34,7 @@ pipelines:
       
     materials:
       git-cd3e9d4:
-        git: https://github.com/0xVijayReddy/test.git
+        git: https://github.com/0xvj/test.git
         shallow_clone: false
         auto_update: true
         branch: master
