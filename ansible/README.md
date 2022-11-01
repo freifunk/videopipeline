@@ -2,11 +2,14 @@
 
 ## Preparation
 
-Install ansible
+1. Install Ansible using [this](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) installation guide.
 
-Install roles:
-    * `ansible-galaxy install geerlingguy.apache`
-    * `ansible-galaxy install geerlingguy.certbot`
+2. Install roles:
+
+
+     ```ansible-galaxy install geerlingguy.apache```
+     
+    ```ansible-galaxy install geerlingguy.certbot```
 
 ## Deploy
 
