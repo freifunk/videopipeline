@@ -34,10 +34,10 @@ pipelines:
       
     materials:
       git-cd3e9d4:
-        git: https://github.com/0xvj/test.git
+        git: https://github.com/freifunk/videoodyssee-frontend
         shallow_clone: false
         auto_update: true
-        branch: master
+        branch: main
     stages:
     - download:
         fetch_materials: true

@@ -7,7 +7,7 @@ pipelines:
     display_order: -1
     materials:
       git-317d973:
-        git: https://github.com/0xVijayReddy/test.git
+        git: https://github.com/freifunk/videoodyssee-frontend
         shallow_clone: false
         auto_update: true
         branch: main
