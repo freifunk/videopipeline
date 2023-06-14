@@ -11,6 +11,16 @@
      
     ```ansible-galaxy install geerlingguy.certbot```
 
+## Pipeline Configuration
+1. The pipeline configuration variables need to be set in `pipelines/processing-pipeline.gocd.yaml` file.
+2. `VOCTOWEB_URL` is the address of your deployed voctoweb instance.
+3. `API_KEY` is API key of voctoweb (you can get it in your voctoweb dashboard).
+4. `CDN_ADDRESS` is the address of the CDN where the processed videos will be uploaded.
+5. `CDN_SERVER_USERNAME` is the username of cdn server using which we login to the system using ssh to upload videos.
+6. `CDN_FILES_FOLDER` is the path where processed videos need to be uploaded (ex: `/srv/files`).
+7. After the configuration variables are setup you need to commit and push those changes. THIS STEP IS VERY IMPORTANT.
+   
+
 ## Deploy
 
 run the gocd-server-playbook.yaml playbook to provision the gocd server
