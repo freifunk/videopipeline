@@ -8,7 +8,6 @@ pipelines:
     environment_variables:
       #pipeline config variables
       VOCTOWEB_URL: http://13.126.150.182:3000
-      API_KEY: 6d72a1de-f38d-416c-bcaa-b9612de24d74
       CDN_ADDRESS: 13.126.150.182
       CDN_SERVER_USERNAME: admin
       CDN_FILES_FOLDER: /srv/files
@@ -16,6 +15,7 @@ pipelines:
       #pipeline trigger variables
       VIDEO_URL: http://13.126.150.182/files/song.mp4
       VIDEO_ID: dd3456dd-e277-4947-95db-3b7c64d4216f
+      API_KEY: testkeye-f38d-416c-bcaa-b9612de24d74
       ACRONYM: freifunk
       SLUG: freifunk-2022
       TITLE: Test title
