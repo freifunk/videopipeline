@@ -7,10 +7,10 @@ pipelines:
     display_order: -1
     environment_variables:
       #pipeline config variables
-      VOCTOWEB_URL: http://13.126.150.182:3000
-      CDN_ADDRESS: 13.126.150.182
+      VOCTOWEB_URL: https://media.freifunk.net/
+      CDN_ADDRESS: rsync://cdnmaster.media.freifunk.net
       CDN_SERVER_USERNAME: admin
-      CDN_FILES_FOLDER: /srv/files
+      CDN_FILES_FOLDER: masterwrite
 
       #pipeline trigger variables
       VIDEO_URL: http://13.126.150.182/files/song.mp4
