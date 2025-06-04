@@ -8,7 +8,7 @@ pipelines:
     environment_variables:
       #pipeline config variables
       VOCTOWEB_URL: https://media.freifunk.net/
-      CDN_ADDRESS: rsync://cdnmaster.media.freifunk.net
+      CDN_ADDRESS: rsync://cdn-m1.media.freifunk.net
       CDN_SERVER_USERNAME: admin
       CDN_FILES_FOLDER: masterwrite
 
