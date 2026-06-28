@@ -39,7 +39,9 @@ done
 WINNER=$(python3 $BASEDIR/select_best_thumb.py $TMPDIR/*.png)
 # lanczos scaling algorithm produces a sharper image for small sizes than the default choice
 # set pix_fmt to create a be more compatible output, otherwise the input format would would be kept
-ffmpeg -loglevel error -i $WINNER -filter_complex:v 'scale=400:-1:lanczos' -f image2 -vcodec mjpeg -pix_fmt yuv420p -q:v 0 -y "$outjpg"
-ffmpeg -loglevel error -i $WINNER                                          -f image2 -vcodec mjpeg -pix_fmt yuv420p -q:v 0 -y "$outjpg_preview"
+# MJPEG expects full-range (JPEG) YUV; video frames are limited-range (TV).
+# out_range=jpeg converts explicitly (required by strict ffmpeg builds).
+ffmpeg -loglevel error -i $WINNER -filter_complex:v 'scale=400:-1:lanczos:out_range=jpeg' -f image2 -vcodec mjpeg -pix_fmt yuv420p -q:v 2 -y "$outjpg"
+ffmpeg -loglevel error -i $WINNER -vf 'scale=iw:ih:out_range=jpeg'                          -f image2 -vcodec mjpeg -pix_fmt yuv420p -q:v 2 -y "$outjpg_preview"
 
 rm -rf $TMPDIR || true
