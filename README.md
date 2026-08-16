@@ -44,6 +44,20 @@ stateDiagram-v2
     
 
 ```
+## Publish to voctoweb
+
+GoCD runs `scripts/publish_videos_to_voctoweb.py` (see `pipelines/processing-pipeline.gocd.yaml`).
+
+Requirements against current media.freifunk.net / VOC voctoweb:
+
+- `recording.size` is **bytes** (not megabytes)
+- `width` / `height` match the video streams
+- HTTP errors fail the job (`raise_for_status` / `curl --fail`)
+- Auth: `Authorization: Token token=…` (body `api_key` still sent for compatibility)
+- Prefer the Python script: `persons` / `tags` as JSON arrays (`text[]` in Postgres)
+
+The shell script `publish_videos_to_voctoweb.sh` is legacy/manual only.
+
 ## Installation of go-server and go-agent (Debian based Systems)
 If you prefer to use the APT repository and install via apt-get, paste the following in your shell
 
